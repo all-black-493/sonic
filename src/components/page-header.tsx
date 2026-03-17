@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Button } from './ui/button';
 import { SidebarTrigger } from './ui/sidebar';
 
-function PageHeader({
+export function PageHeader({
     title,
     className
 }: {
@@ -39,4 +39,3 @@ function PageHeader({
     )
 }
 
-export default PageHeader

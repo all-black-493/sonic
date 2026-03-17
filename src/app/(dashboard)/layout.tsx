@@ -1,5 +1,5 @@
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import DashboardSidebar from "@/features/dashboard/components/dashboard-sidebar";
+import { DashboardSidebar } from "@/features/dashboard/components/dashboard-sidebar";
 import { cookies } from "next/headers";
 
 import React from 'react'

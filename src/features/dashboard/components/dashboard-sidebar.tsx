@@ -3,7 +3,7 @@
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarRail, SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { OrganizationSwitcher, useClerk, UserButton } from "@clerk/nextjs";
-import { AudioLines, Headphones, Home, LucideCircleQuestionMark, Pencil, SettingsIcon, Speech, Volume2, type LucideIcon } from "lucide-react";
+import { AudioLines, BrainCogIcon, HatGlasses, Headphones, Home, Pencil, SettingsIcon, SpeechIcon, Volume2, type LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -68,7 +68,7 @@ function NavSection({ label, items, pathname }: NavSectionProps) {
 }
 
 
-function DashboardSidebar() {
+export function DashboardSidebar() {
 
     const pathname = usePathname()
     const clerk = useClerk()
@@ -91,6 +91,21 @@ function DashboardSidebar() {
         {
             title: "Voice Cloning",
             icon: Volume2
+        },
+        {
+            title: "Speech to speech",
+            url: "/speech-to-speech",
+            icon: SpeechIcon
+        },
+        {
+            title:"Design your voice",
+            url: "/voice-design",
+            icon: BrainCogIcon
+        },
+        {
+            title:"Detect deepfakes",
+            url: "/voice-design",
+            icon: HatGlasses
         }
     ]
 
@@ -169,4 +184,3 @@ function DashboardSidebar() {
     )
 }
 
-export default DashboardSidebar
