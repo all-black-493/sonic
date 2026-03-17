@@ -1,5 +1,6 @@
+import '../lib/orpc/orpc.server'
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { CustomClerkProvider } from "@/providers";
+import { Providers } from "@/providers";
 import Toaster from "@/toaster";
 import type { Metadata } from "next";
 import { ThemeProvider } from 'next-themes';
@@ -36,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <CustomClerkProvider >
+    <Providers >
       <html lang="en">
         <body className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} antialiased`}>
           <ThemeProvider attribute="class" defaultTheme="system">
@@ -47,6 +48,6 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </html>
-    </CustomClerkProvider>
+    </Providers>
   );
 }
