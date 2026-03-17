@@ -6,7 +6,7 @@ import Link from "next/link"
 
 type QuickActionCardProps = QuickAction
 
-function QuickActionCard({ description, gradient, href, title }: QuickActionCardProps) {
+export function QuickActionCard({ description, gradient, href, title }: QuickActionCardProps) {
     return (
         <div className="flex gap-4 rounded-xl border bg-card p-3 ">
             <div className={cn("relative h-31 w-41 shrink-0 overflow-scroll rounded-xl bg-linear-to-br", gradient)}>
@@ -36,4 +36,3 @@ function QuickActionCard({ description, gradient, href, title }: QuickActionCard
     )
 }
 
-export default QuickActionCard

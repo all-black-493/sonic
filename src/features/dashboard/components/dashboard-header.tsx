@@ -6,7 +6,7 @@ import { Headphones, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
-function DashboardHeader() {
+export function DashboardHeader() {
 
     const { isLoaded, user } = useUser()
     return (
@@ -40,4 +40,3 @@ function DashboardHeader() {
     )
 }
 
-export default DashboardHeader

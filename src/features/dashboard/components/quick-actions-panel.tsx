@@ -1,8 +1,8 @@
 import { quickActions } from '@/features/text-to-speech/data/quick-actions'
 import React from 'react'
-import QuickActionCard from './quick-action-card'
+import { QuickActionCard } from './quick-action-card'
 
-function QuickActionsPanel() {
+export function QuickActionsPanel() {
     return (
         <div className="space-y-4">
             <h2 className="text-lg font-semibold">
@@ -23,4 +23,3 @@ function QuickActionsPanel() {
     )
 }
 
-export default QuickActionsPanel

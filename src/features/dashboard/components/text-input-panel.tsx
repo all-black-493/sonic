@@ -3,12 +3,12 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
-import { TEXT_MAX_LENGTH } from '@/features/text-to-speech/data/constants'
+import { COST_PER_UNIT, TEXT_MAX_LENGTH } from '@/features/text-to-speech/data/constants'
 import { Coins } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
-function TextInputPanel() {
+export function TextInputPanel() {
 
     const [text, setText] = useState("")
     const router = useRouter()
@@ -44,7 +44,7 @@ shadow-[0_8px_30px_rgba(94,165,0,0.25)]">
                                 ) : (
                                     <>
                                         <span className="tabular-nums">
-                                            ${(text.length * 0.0003).toFixed(4)}
+                                            ${(text.length * COST_PER_UNIT).toFixed(4)}
                                         </span>{" "}estimated
                                     </>
                                 )}
@@ -71,4 +71,3 @@ shadow-[0_8px_30px_rgba(94,165,0,0.25)]">
     )
 }
 
-export default TextInputPanel
