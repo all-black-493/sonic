@@ -26,10 +26,10 @@ export function GenerateButton({
         >
             {isSubmitting ? (
                 <>
-                <Spinner className="size-3" />
-                Generating ...
+                    <Spinner className="size-3" />
+                    Generating ...
                 </>
-            ):(
+            ) : (
                 "Generate speech"
             )}
 

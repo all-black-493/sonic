@@ -15,4 +15,6 @@ export const VOICE_CATEGORY_LABELS: Record<VoiceCategory, string> = {
     VOICEOVER: "Voiceover"
 }
 
-export const VOICE_CATEGORIES = Object.keys(VOICE_CATEGORY_LABELS) as VoiceCategory[]
+export const VOICE_CATEGORIES = Object.keys(
+    VOICE_CATEGORY_LABELS,
+) as VoiceCategory[]
