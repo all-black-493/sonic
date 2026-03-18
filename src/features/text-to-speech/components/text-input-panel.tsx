@@ -61,7 +61,7 @@ export function TextInputPanel() {
                                 </span>
                             </p>
                             <GenerateButton
-                                className='w-full'
+                                size='xs'
                                 disabled={isSubmitting || !isValid}
                                 isSubmitting={isSubmitting}
                                 onSubmit={() => form.handleSubmit()}
