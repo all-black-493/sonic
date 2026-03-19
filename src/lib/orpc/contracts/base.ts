@@ -33,4 +33,15 @@ export const base = oc.errors({
       rule: z.string(),
     }),
   },
+  AUDIO_GENERATION_FAILED: {
+    status: 502,
+    message: "Audio generation failed",
+    data: z.object({
+      provider: z.string().optional(),
+    })
+  },
+  INTERNAL_SERVER_ERROR: {
+    status: 500,
+    message: "Something went wrong",
+  }
 });

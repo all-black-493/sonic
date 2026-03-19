@@ -19,6 +19,7 @@ export function GenerateButton({
 }) {
     return (
         <Button
+            type="button"
             size={size}
             className={className}
             onClick={onSubmit}

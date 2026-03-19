@@ -1,0 +1,15 @@
+import type { Prisma } from '../../prisma/client';
+import * as z from 'zod';
+import { GenerationWhereInputObjectSchema as GenerationWhereInputObjectSchema } from './objects/GenerationWhereInput.schema';
+import { GenerationOrderByWithAggregationInputObjectSchema as GenerationOrderByWithAggregationInputObjectSchema } from './objects/GenerationOrderByWithAggregationInput.schema';
+import { GenerationScalarWhereWithAggregatesInputObjectSchema as GenerationScalarWhereWithAggregatesInputObjectSchema } from './objects/GenerationScalarWhereWithAggregatesInput.schema';
+import { GenerationScalarFieldEnumSchema } from './enums/GenerationScalarFieldEnum.schema';
+import { GenerationCountAggregateInputObjectSchema as GenerationCountAggregateInputObjectSchema } from './objects/GenerationCountAggregateInput.schema';
+import { GenerationMinAggregateInputObjectSchema as GenerationMinAggregateInputObjectSchema } from './objects/GenerationMinAggregateInput.schema';
+import { GenerationMaxAggregateInputObjectSchema as GenerationMaxAggregateInputObjectSchema } from './objects/GenerationMaxAggregateInput.schema';
+import { GenerationAvgAggregateInputObjectSchema as GenerationAvgAggregateInputObjectSchema } from './objects/GenerationAvgAggregateInput.schema';
+import { GenerationSumAggregateInputObjectSchema as GenerationSumAggregateInputObjectSchema } from './objects/GenerationSumAggregateInput.schema';
+
+export const GenerationGroupBySchema: z.ZodType<Prisma.GenerationGroupByArgs> = z.object({ where: GenerationWhereInputObjectSchema.optional(), orderBy: z.union([GenerationOrderByWithAggregationInputObjectSchema, GenerationOrderByWithAggregationInputObjectSchema.array()]).optional(), having: GenerationScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(GenerationScalarFieldEnumSchema), _count: z.union([ z.literal(true), GenerationCountAggregateInputObjectSchema ]).optional(), _min: GenerationMinAggregateInputObjectSchema.optional(), _max: GenerationMaxAggregateInputObjectSchema.optional(), _avg: GenerationAvgAggregateInputObjectSchema.optional(), _sum: GenerationSumAggregateInputObjectSchema.optional() }).strict() as unknown as z.ZodType<Prisma.GenerationGroupByArgs>;
+
+export const GenerationGroupByZodSchema = z.object({ where: GenerationWhereInputObjectSchema.optional(), orderBy: z.union([GenerationOrderByWithAggregationInputObjectSchema, GenerationOrderByWithAggregationInputObjectSchema.array()]).optional(), having: GenerationScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(GenerationScalarFieldEnumSchema), _count: z.union([ z.literal(true), GenerationCountAggregateInputObjectSchema ]).optional(), _min: GenerationMinAggregateInputObjectSchema.optional(), _max: GenerationMaxAggregateInputObjectSchema.optional(), _avg: GenerationAvgAggregateInputObjectSchema.optional(), _sum: GenerationSumAggregateInputObjectSchema.optional() }).strict();
