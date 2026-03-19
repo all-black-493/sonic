@@ -1,0 +1,14 @@
+import type { Prisma } from '../../prisma/client';
+import * as z from 'zod';
+import { GenerationOrderByWithRelationInputObjectSchema as GenerationOrderByWithRelationInputObjectSchema } from './objects/GenerationOrderByWithRelationInput.schema';
+import { GenerationWhereInputObjectSchema as GenerationWhereInputObjectSchema } from './objects/GenerationWhereInput.schema';
+import { GenerationWhereUniqueInputObjectSchema as GenerationWhereUniqueInputObjectSchema } from './objects/GenerationWhereUniqueInput.schema';
+import { GenerationCountAggregateInputObjectSchema as GenerationCountAggregateInputObjectSchema } from './objects/GenerationCountAggregateInput.schema';
+import { GenerationMinAggregateInputObjectSchema as GenerationMinAggregateInputObjectSchema } from './objects/GenerationMinAggregateInput.schema';
+import { GenerationMaxAggregateInputObjectSchema as GenerationMaxAggregateInputObjectSchema } from './objects/GenerationMaxAggregateInput.schema';
+import { GenerationAvgAggregateInputObjectSchema as GenerationAvgAggregateInputObjectSchema } from './objects/GenerationAvgAggregateInput.schema';
+import { GenerationSumAggregateInputObjectSchema as GenerationSumAggregateInputObjectSchema } from './objects/GenerationSumAggregateInput.schema';
+
+export const GenerationAggregateSchema: z.ZodType<Prisma.GenerationAggregateArgs> = z.object({ orderBy: z.union([GenerationOrderByWithRelationInputObjectSchema, GenerationOrderByWithRelationInputObjectSchema.array()]).optional(), where: GenerationWhereInputObjectSchema.optional(), cursor: GenerationWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), _count: z.union([ z.literal(true), GenerationCountAggregateInputObjectSchema ]).optional(), _min: GenerationMinAggregateInputObjectSchema.optional(), _max: GenerationMaxAggregateInputObjectSchema.optional(), _avg: GenerationAvgAggregateInputObjectSchema.optional(), _sum: GenerationSumAggregateInputObjectSchema.optional() }).strict() as unknown as z.ZodType<Prisma.GenerationAggregateArgs>;
+
+export const GenerationAggregateZodSchema = z.object({ orderBy: z.union([GenerationOrderByWithRelationInputObjectSchema, GenerationOrderByWithRelationInputObjectSchema.array()]).optional(), where: GenerationWhereInputObjectSchema.optional(), cursor: GenerationWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), _count: z.union([ z.literal(true), GenerationCountAggregateInputObjectSchema ]).optional(), _min: GenerationMinAggregateInputObjectSchema.optional(), _max: GenerationMaxAggregateInputObjectSchema.optional(), _avg: GenerationAvgAggregateInputObjectSchema.optional(), _sum: GenerationSumAggregateInputObjectSchema.optional() }).strict();

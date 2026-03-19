@@ -1,6 +1,7 @@
 import { implement } from "@orpc/server";
 import { contract } from "../contracts";
 import { getAll, deleteVoice } from "./voices";
+import { getAllGenerations, getById, createGeneration } from "./generations";
 
 const os = implement(contract);
 
@@ -9,4 +10,9 @@ export const router = os.router({
     getAll,
     deleteVoice,
   },
+  generationsRouter: {
+    getGenerationById: getById,
+    getAllGenerations: getAllGenerations,
+    createGeneration: createGeneration
+  }
 });

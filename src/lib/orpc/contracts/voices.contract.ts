@@ -1,4 +1,4 @@
-import { deleteVoiceInputSchema, deleteVoiceOutputSchema, getAllVoicesInputSchema, getAllVoicesOutputSchema } from "../schemas";
+import { deleteVoiceInputSchema, deleteVoiceOutputSchema, getAllVoicesInputSchema, getAllVoicesOutputSchema, getGenerationByIDInputSchema } from "../schemas";
 import { base } from "./base";
 
 export const getAllVoices = base
@@ -8,3 +8,4 @@ export const getAllVoices = base
 export const deleteVoice = base
     .input(deleteVoiceInputSchema)
     .output(deleteVoiceOutputSchema)
+

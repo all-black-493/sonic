@@ -1,0 +1,19 @@
+import * as z from 'zod';
+// prettier-ignore
+export const GenerationModelSchema = z.object({
+    id: z.string(),
+    orgId: z.string(),
+    voiceId: z.string().nullable(),
+    voice: z.unknown().nullable(),
+    voiceName: z.string(),
+    text: z.string(),
+    r2ObjectKey: z.string().nullable(),
+    temperature: z.number(),
+    topP: z.number(),
+    topK: z.number().int(),
+    repetitionPenalty: z.number(),
+    createdAt: z.date(),
+    updatedAt: z.date()
+}).strict();
+
+export type GenerationPureType = z.infer<typeof GenerationModelSchema>;
