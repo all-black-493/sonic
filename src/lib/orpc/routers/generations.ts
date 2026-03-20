@@ -1,13 +1,11 @@
-import { implement } from "@orpc/server";
-import { contract } from "../contracts";
-import { prisma } from "@/lib/db";
-import { orgMiddleware } from "../middleware";
 import { chatterbox } from "@/lib/chatterbox-client";
+import { prisma } from "@/lib/db";
 import { uploadAudio } from "@/lib/r2";
+import { orgProcedure } from "./base";
+import * as Sentry from "@sentry/nextjs"
 
-const os = implement(contract)
 
-export const getById = os.generationsRouter.getGenerationById.use(orgMiddleware).handler(async ({ input, context, errors }) => {
+export const getById = orgProcedure.generationsRouter.getGenerationById.handler(async ({ input, context, errors }) => {
     const generation = await prisma.generation.findUnique({
         where: {
             id: input.id,
@@ -29,7 +27,7 @@ export const getById = os.generationsRouter.getGenerationById.use(orgMiddleware)
     }
 })
 
-export const getAllGenerations = os.generationsRouter.getAllGenerations.use(orgMiddleware).handler(async ({ context }) => {
+export const getAllGenerations = orgProcedure.generationsRouter.getAllGenerations.handler(async ({ context }) => {
     const generations = await prisma.generation.findMany({
         where: { orgId: context.orgId },
         orderBy: { createdAt: "desc" },
@@ -41,7 +39,7 @@ export const getAllGenerations = os.generationsRouter.getAllGenerations.use(orgM
     return generations
 })
 
-export const createGeneration = os.generationsRouter.createGeneration.use(orgMiddleware).handler(async ({ input, context, errors }) => {
+export const createGeneration = orgProcedure.generationsRouter.createGeneration.handler(async ({ input, context, errors }) => {
     const voice = await prisma.voice.findUnique({
         where: {
             id: input.voiceId,
@@ -88,6 +86,12 @@ export const createGeneration = os.generationsRouter.createGeneration.use(orgMid
             norm_loudness: true
         },
         parseAs: "arrayBuffer"
+    })
+
+    Sentry.logger.info("Generation started", {
+        orgId: context.orgId,
+        voiceId: input.voiceId,
+        textLength: input.text.length
     })
 
     if (error) {
@@ -143,6 +147,13 @@ export const createGeneration = os.generationsRouter.createGeneration.use(orgMid
                 r2ObjectKey
             }
         })
+
+        Sentry.logger.info("Audio Generated",
+            {
+                orgId: context.orgId,
+                generationId: generation.id
+            }
+        )
     } catch {
         if (generationId) {
             await prisma.generation.delete({
@@ -153,6 +164,14 @@ export const createGeneration = os.generationsRouter.createGeneration.use(orgMid
 
             })
         }
+
+        Sentry.logger.error(
+            "Generation failed",
+            {
+                orgId: context.orgId,
+                voiceId: input.voiceId,
+            }
+        )
 
         throw errors.INTERNAL_SERVER_ERROR({
             message: "Failed to store generated audio "
