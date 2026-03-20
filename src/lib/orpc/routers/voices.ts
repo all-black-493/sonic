@@ -1,12 +1,9 @@
-import { implement } from "@orpc/server";
-import { contract } from "../contracts";
 import { prisma } from "@/lib/db";
-import { orgMiddleware } from "../middleware";
 import { deleteAudio } from "@/lib/r2";
+import { orgProcedure } from "./base";
 
-const os = implement(contract)
 
-export const getAll = os.voicesRouter.getAll.use(orgMiddleware).handler(async ({ input, errors, context }) => {
+export const getAll = orgProcedure.voicesRouter.getAll.handler(async ({ input, errors, context }) => {
     const searchFilter = input?.query
         ? {
             OR: [
@@ -65,7 +62,7 @@ export const getAll = os.voicesRouter.getAll.use(orgMiddleware).handler(async ({
     return { custom, system }
 })
 
-export const deleteVoice = os.voicesRouter.deleteVoice.use(orgMiddleware).handler(async ({ input, errors, context }) => {
+export const deleteVoice = orgProcedure.voicesRouter.deleteVoice.handler(async ({ input, errors, context }) => {
     const voice = await prisma.voice.findUnique({
         where: {
             id: input.id,
