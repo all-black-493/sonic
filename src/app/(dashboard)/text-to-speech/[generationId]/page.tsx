@@ -11,6 +11,8 @@ export default async function TextToSpeechDetailPage({ params }: { params: Promi
 
     await queryClient.prefetchQuery(orpc.generationsRouter.getGenerationById.queryOptions({ input: { id: generationId } }))
     await queryClient.prefetchQuery(orpc.voicesRouter.getAll.queryOptions())
+    await queryClient.prefetchQuery(orpc.generationsRouter.getAllGenerations.queryOptions())
+
 
     return (
         <HydrateClient client={queryClient}>

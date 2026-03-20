@@ -3,7 +3,7 @@
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarRail, SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { OrganizationSwitcher, useClerk, UserButton } from "@clerk/nextjs";
-import { AudioLines, BrainCogIcon, HatGlasses, Headphones, Home, Pencil, SettingsIcon, SpeechIcon, Volume2, type LucideIcon } from "lucide-react";
+import { AudioLines, BrainCogIcon, HatGlasses, Headphones, Home, LayoutGrid, Pencil, SettingsIcon, SpeechIcon, Volume2, type LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -84,29 +84,34 @@ export function DashboardSidebar() {
             icon: AudioLines
         },
         {
-            title: "Speech to text",
-            url: "/speech-to-text",
-            icon: Pencil
+            title: "Explore voices",
+            url: "/voices",
+            icon: LayoutGrid,
         },
+        // {
+        //     title: "Speech to text",
+        //     url: "/speech-to-text",
+        //     icon: Pencil
+        // },
         {
             title: "Voice Cloning",
             icon: Volume2
         },
-        {
-            title: "Speech to speech",
-            url: "/speech-to-speech",
-            icon: SpeechIcon
-        },
-        {
-            title:"Design your voice",
-            url: "/voice-design",
-            icon: BrainCogIcon
-        },
-        {
-            title:"Detect deepfakes",
-            url: "/voice-design",
-            icon: HatGlasses
-        }
+        // {
+        //     title: "Speech to speech",
+        //     url: "/speech-to-speech",
+        //     icon: SpeechIcon
+        // },
+        // {
+        //     title:"Design your voice",
+        //     url: "/voice-design",
+        //     icon: BrainCogIcon
+        // },
+        // {
+        //     title:"Detect deepfakes",
+        //     url: "/voice-design",
+        //     icon: HatGlasses
+        // }
     ]
 
     const othersMenuItems: MenuItem[] = [

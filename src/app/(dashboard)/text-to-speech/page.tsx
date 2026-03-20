@@ -14,6 +14,7 @@ async function TextToSpeechPage({ searchParams }: { searchParams: Promise<{ text
     const queryClient = getQueryClient()
 
     await queryClient.prefetchQuery(orpc.voicesRouter.getAll.queryOptions())
+    await queryClient.prefetchQuery(orpc.generationsRouter.getAllGenerations.queryOptions())
 
     return (
         <HydrateClient client={queryClient}>
