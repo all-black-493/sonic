@@ -2,6 +2,7 @@ import '../lib/orpc/orpc.server'
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Providers } from "@/providers";
 import Toaster from "@/toaster";
+import { NuqsAdapter } from "nuqs/adapters/next/app"
 import type { Metadata } from "next";
 import { ThemeProvider } from 'next-themes';
 import { Alegreya, JetBrains_Mono, Outfit } from "next/font/google";
@@ -42,7 +43,9 @@ export default function RootLayout({
         <body className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} antialiased`}>
           <ThemeProvider attribute="class" defaultTheme="system">
             <TooltipProvider>
-              {children}
+              <NuqsAdapter>
+                {children}
+              </NuqsAdapter>
               <Toaster />
             </TooltipProvider>
           </ThemeProvider>
