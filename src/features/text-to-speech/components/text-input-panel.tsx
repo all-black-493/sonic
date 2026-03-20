@@ -8,6 +8,10 @@ import { Coins } from 'lucide-react'
 import { COST_PER_UNIT, TEXT_MAX_LENGTH } from '../data/constants'
 import { GenerateButton } from './generate-button'
 import { ttsFormOptions } from './text-to-speech-form'
+import { SettingsDrawer } from './settings-drawer'
+import { VoiceSelectorButton } from './voice-selector-button'
+import { HistoryDrawer } from './history-drawer'
+import { PromptSuggestions } from './prompt-suggestions'
 
 export function TextInputPanel() {
 
@@ -35,6 +39,12 @@ export function TextInputPanel() {
             </div>
             <div className="shrink-0 p-4 lg:p-6">
                 <div className="flex flex-col gap-3 lg:hidden">
+                    <div className="flex items-center gap-2">
+                        <SettingsDrawer>
+                            <VoiceSelectorButton />
+                        </SettingsDrawer>
+                        <HistoryDrawer />
+                    </div>
                     <GenerateButton
                         className='w-full'
                         disabled={isSubmitting || !isValid}
@@ -71,9 +81,9 @@ export function TextInputPanel() {
 
                 ) : (
                     <div className="hidden lg:block">
-                        <p className="text-sm text-muted-foreground">
-                            Get started by typing or pasting above
-                        </p>
+                        <PromptSuggestions
+                            onSelect={(prompt) => form.setFieldValue("text", prompt)}
+                        />
                     </div>
                 )}
             </div>
