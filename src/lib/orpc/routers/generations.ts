@@ -1,8 +1,9 @@
 import { chatterbox } from "@/lib/chatterbox-client";
 import { prisma } from "@/lib/db";
 import { uploadAudio } from "@/lib/r2";
-import { orgProcedure } from "./base";
+import { orgProcedure, premiumProcedure } from "./base";
 import * as Sentry from "@sentry/nextjs"
+import { polar } from "@/lib/polar";
 
 
 export const getById = orgProcedure.generationsRouter.getGenerationById.handler(async ({ input, context, errors }) => {
@@ -39,7 +40,7 @@ export const getAllGenerations = orgProcedure.generationsRouter.getAllGeneration
     return generations
 })
 
-export const createGeneration = orgProcedure.generationsRouter.createGeneration.handler(async ({ input, context, errors }) => {
+export const createGeneration = premiumProcedure.generationsRouter.createGeneration.handler(async ({ input, context, errors }) => {
     const voice = await prisma.voice.findUnique({
         where: {
             id: input.voiceId,
@@ -184,6 +185,21 @@ export const createGeneration = orgProcedure.generationsRouter.createGeneration.
             message: "Failed to store generated audio"
         })
     }
+
+    polar.events.ingest({
+        events: [
+            {
+                name: "tts_generation",
+                externalCustomerId: context.orgId,
+                metadata: {
+                    characters: input.text.length
+                },
+                timestamp: new Date()
+            }
+        ]
+    }).catch(() => {
+
+    })
 
     return {
         id: generationId

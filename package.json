@@ -23,6 +23,7 @@
     "@orpc/otel": "^1.13.9",
     "@orpc/server": "^1.13.7",
     "@orpc/tanstack-query": "^1.13.7",
+    "@polar-sh/nextjs": "^0.9.5",
     "@prisma/adapter-pg": "^7.4.2",
     "@prisma/client": "^7.4.2",
     "@sentry/nextjs": "^10.45.0",
