@@ -7,6 +7,7 @@ import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { useMutation } from "@tanstack/react-query"
 import { orpc } from "@/lib/orpc/orpc.tanstack"
+import { useCheckout } from "@/features/billing/hooks/use-checkout"
 
 const ttsFormSchema = z.object({
     text: z.string().min(1, "Please enter some text"),
@@ -44,7 +45,7 @@ export function TextToSpeechForm({
         orpc.generationsRouter.createGeneration.mutationOptions({})
     )
 
-
+    const { checkout } = useCheckout()
     const form = useAppForm({
         ...ttsFormOptions,
         defaultValues: defaultValues ?? defaultValues,
@@ -67,7 +68,17 @@ export function TextToSpeechForm({
 
             } catch (error) {
                 const message = error instanceof Error ? error.message : "Failed to generate audio"
-                toast.error(message)
+                if (message == "Subscription is required") {
+                    toast.error("Subscription required", {
+                        action: {
+                            label: "Subscribe",
+                            onClick: () => checkout()
+                        }
+                    })
+                } else {
+                    toast.error(message)
+                }
+
             }
         }
     })

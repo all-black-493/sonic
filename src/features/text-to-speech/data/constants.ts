@@ -1,2 +1,2 @@
 export const TEXT_MAX_LENGTH = 7000
-export const COST_PER_UNIT=0.0005
+export const COST_PER_UNIT=0.005
